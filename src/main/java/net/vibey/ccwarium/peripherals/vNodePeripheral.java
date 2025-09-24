@@ -35,4 +35,32 @@ public class vNodePeripheral implements IPeripheral {
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
     }
+    @LuaFunction
+    public void setNodeYaw(double yaw) throws LuaException {
+        if (yaw > 1 || yaw < -1) throw new LuaException("Control surface values can only match -1,0,1");
+        node.getPersistentData().putDouble("Yaw",yaw/1);
+        BlockState state = node.getLevel().getBlockState(node.getBlockPos());
+        node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
+    }
+    @LuaFunction
+    public void setNodeRoll(double roll) throws LuaException {
+        if (roll > 1 || roll < -1) throw new LuaException("Control surface values can only match -1,0,1");
+        node.getPersistentData().putDouble("Roll", roll /1);
+        BlockState state = node.getLevel().getBlockState(node.getBlockPos());
+        node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
+    }
+    @LuaFunction
+    public void setNodeThrottle(double throttle) throws LuaException {
+        if (throttle > 10 || throttle < -1) throw new LuaException("Throttle values can only be -1-10");
+        node.getPersistentData().putDouble("Throttle",throttle/10);
+        BlockState state = node.getLevel().getBlockState(node.getBlockPos());
+        node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
+    }
+    @LuaFunction
+    public void setNodeLandingGear(boolean LG) throws LuaException {
+        if (LG != true||LG != false) throw new LuaException("landing gear can only match true or false");
+        node.getPersistentData().putBoolean("LandingGear", LG);
+        BlockState state = node.getLevel().getBlockState(node.getBlockPos());
+        node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
+    }
 }
