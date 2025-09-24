@@ -1,0 +1,17 @@
+Current features:
+
+control valkyrien wariums  vehicle control node
+
+make sure to wrap the vehicle control node as a peripheral!
+
+functions:
+
+pitch              setNodePitch(<1, 0, or -1>)
+
+yaw                setNodeYaw(<1, 0, or -1>)
+
+roll                 setNodeRoll(<1, 0, or -1>)
+
+throttle          setNodeThrottle(<1, 0, or -1>)
+
+landing gear  setNodeLandingGear(<true/false>)
