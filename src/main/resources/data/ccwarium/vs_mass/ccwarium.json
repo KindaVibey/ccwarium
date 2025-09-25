@@ -1,0 +1,14 @@
+[
+  {
+    "block": "computercraft:computer_advanced",
+    "mass": 40.0
+  },
+  {
+    "block": "computercraft:wireless_modem_advanced",
+    "mass": 25.0
+  },
+  {
+    "block": "computercraft:monitor_advanced",
+    "mass": 30.0
+  }
+]
