@@ -58,7 +58,7 @@ public class vNodePeripheral implements IPeripheral {
     }
     @LuaFunction
     public void setNodeLandingGear(boolean LG) throws LuaException {
-        if (LG != true||LG != false) throw new LuaException("landing gear can only match true or false");
+        if (LG != true && LG != false) throw new LuaException("landing gear can only match true or false");
         node.getPersistentData().putBoolean("LandingGear", LG);
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
