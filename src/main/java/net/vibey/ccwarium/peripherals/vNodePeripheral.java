@@ -63,4 +63,15 @@ public class vNodePeripheral implements IPeripheral {
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
     }
+    @LuaFunction
+    public void setNodeTrigger(int channel, boolean trigger) throws LuaException {
+        if (trigger != true && trigger != false) throw new LuaException("trigger can only match true or false");
+        if (channel > 10 || channel < 0) throw new LuaException("channel values can only be 0-10");
+        double trig;
+        if (trigger) trig = 1;
+        else trig = 0;
+        node.getPersistentData().putDouble("Trigger"+channel+".0", trig/1);
+        BlockState state = node.getLevel().getBlockState(node.getBlockPos());
+        node.getLevel().sendBlockUpdated(node.getBlockPos(), state, state, 3);
+    }
 }
