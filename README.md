@@ -14,4 +14,4 @@ roll                 setNodeRoll(<1, 0, or -1>)
 
 throttle          setNodeThrottle(<1, 0, or -1>)
 
-landing gear  setNodeLandingGear(<true/false>)
+-not avaliable yet- landing gear  setNodeLandingGear(<true/false>)
