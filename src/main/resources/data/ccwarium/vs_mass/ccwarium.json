@@ -2,16 +2,22 @@
   {
     "block": "computercraft:computer_advanced",
     "mass": 40.0,
-    "friction": 0.0
+    "friction": 0.0,
+    "elasticity": 0.0,
+    "priority": 101
   },
   {
     "block": "computercraft:wireless_modem_advanced",
     "mass": 25.0,
-    "friction": 0.0
+    "friction": 0.0,
+    "elasticity": 0.0,
+    "priority": 101
   },
   {
     "block": "computercraft:monitor_advanced",
     "mass": 30.0,
-    "friction": 0.0
+    "friction": 0.0,
+    "elasticity": 0.0,
+    "priority": 101
   }
 ]
