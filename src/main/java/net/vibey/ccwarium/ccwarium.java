@@ -1,6 +1,7 @@
 package net.vibey.ccwarium;
 
 import net.vibey.ccwarium.peripherals.vNodePeripheral;
+import net.vibey.ccwarium.peripherals.cSeatPeripheral;
 import com.mojang.logging.LogUtils;
 import dan200.computercraft.api.ForgeComputerCraftAPI;
 import dan200.computercraft.api.peripheral.IPeripheral;
@@ -35,6 +36,7 @@ public class ccwarium {
                 if(blockEntity==null) return LazyOptional.empty();
                 String id = BlockEntityType.getKey(blockEntity.getType()).toString();
                 if(Config.NODES.contains(id)) return LazyOptional.of(()->new vNodePeripheral(blockEntity));
+                if(Config.NODES.contains(id)) return LazyOptional.of(()->new cSeatPeripheral(blockEntity));
                 return LazyOptional.empty();
             }
         });
