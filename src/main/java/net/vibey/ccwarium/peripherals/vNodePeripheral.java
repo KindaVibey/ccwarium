@@ -30,21 +30,21 @@ public class vNodePeripheral implements IPeripheral {
 
     @LuaFunction
     public void setNodePitch(double pitch) throws LuaException {
-        if (pitch > 1 || pitch < -1) throw new LuaException("Control surface values can only match -1,0,1");
+        if (pitch > 1 || pitch < -1) throw new LuaException("Pitch values can only match -1,0,1");
         node.getPersistentData().putDouble("Pitch",pitch/1);
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
     }
     @LuaFunction
     public void setNodeYaw(double yaw) throws LuaException {
-        if (yaw > 1 || yaw < -1) throw new LuaException("Control surface values can only match -1,0,1");
+        if (yaw > 1 || yaw < -1) throw new LuaException("Yaw values can only match -1,0,1");
         node.getPersistentData().putDouble("Yaw",yaw/1);
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
     }
     @LuaFunction
     public void setNodeRoll(double roll) throws LuaException {
-        if (roll > 1 || roll < -1) throw new LuaException("Control surface values can only match -1,0,1");
+        if (roll > 1 || roll < -1) throw new LuaException("Roll values can only match -1,0,1");
         node.getPersistentData().putDouble("Roll", roll/1);
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(),state,state,3);
