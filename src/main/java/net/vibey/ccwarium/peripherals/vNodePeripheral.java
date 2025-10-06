@@ -118,7 +118,7 @@ public class vNodePeripheral implements IPeripheral {
     }
     @LuaFunction
     public boolean getNodeLandingGear() {
-        boolean LG = node.getPersistentData().getDouble("LandingGear");
+        boolean LG = node.getPersistentData().getBoolean("LandingGear");
 
         return LG;
     }
