@@ -76,4 +76,50 @@ public class vNodePeripheral implements IPeripheral {
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
         node.getLevel().sendBlockUpdated(node.getBlockPos(), state, state, 3);
     }
+
+
+
+
+
+    @LuaFunction
+    public boolean getNodeTrigger(int channel) throws LuaException {
+        if (channel > 10 || channel < 0) throw new LuaException("channel values can only be 0-10");
+
+        double trig = node.getPersistentData().getDouble("Trigger"+channel+".0");
+        boolean trigger;
+        if (trig > 0) trigger = true;
+        else trigger = false;
+
+        return trigger;
+    }
+    @LuaFunction
+    public double getNodePitch() {
+        double pitch = node.getPersistentData().getDouble("Pitch");
+
+        return pitch;
+    }
+    @LuaFunction
+    public double getNodeYaw() {
+        double yaw = node.getPersistentData().getDouble("Yaw");
+
+        return yaw;
+    }
+    @LuaFunction
+    public double getNodeRoll() {
+        double roll = node.getPersistentData().getDouble("Roll");
+
+        return roll;
+    }
+    @LuaFunction
+    public double getNodeThrottle() {
+        double throttle = node.getPersistentData().getDouble("Throttle");
+
+        return throttle;
+    }
+    @LuaFunction
+    public boolean getNodeLandingGear() {
+        boolean LG = node.getPersistentData().getDouble("LandingGear");
+
+        return LG;
+    }
 }
