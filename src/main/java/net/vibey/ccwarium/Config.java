@@ -17,7 +17,7 @@ public class Config {
 
     // a list of strings that are treated as resource locations for items
     private static final ForgeConfigSpec.ConfigValue<List<? extends String>> CONTROLABLE_CONF = BUILDER.comment("ids of wariumvs controlables.").defineList("nodes",List.of(
-            "vehicle_control_node", "control_seat"
+            "vehicle_control_node","control_seat"
     ),(e)->e instanceof String);
 
     static final ForgeConfigSpec SPEC = BUILDER.build();

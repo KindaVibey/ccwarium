@@ -7,6 +7,7 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class cSeatPeripheral implements IPeripheral{
+
     private final BlockEntity node;
 
     public cSeatPeripheral(BlockEntity node) {
