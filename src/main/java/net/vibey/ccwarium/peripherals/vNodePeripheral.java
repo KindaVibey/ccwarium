@@ -16,7 +16,7 @@ public class vNodePeripheral implements IPeripheral {
 
     @Override
     public String getType() {
-        return "vehicle_control_node";
+        return "controller";
     }
 
     @Override
