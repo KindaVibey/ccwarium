@@ -17,3 +17,5 @@ functions:
 # landing gear     setNodeLandingGear(<true/false>)
 
 # channel trigger  setNodeTrigger(<channel>, <true/false>)
+
+# get values   getNode<>() --if trigger than input channel number
