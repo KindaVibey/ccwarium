@@ -21,7 +21,7 @@ public class vNodePeripheral implements IPeripheral {
 
     @Override
     public boolean equals(IPeripheral iPeripheral) {
-        if(iPeripheral instanceof  vNodePeripheral peripheral){
+        if(iPeripheral instanceof vNodePeripheral peripheral){
             return node==peripheral.node;
         }
         return false;

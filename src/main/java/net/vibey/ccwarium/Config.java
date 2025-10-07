@@ -26,6 +26,16 @@ public class Config {
     @SubscribeEvent
     static void onLoad(final ModConfigEvent event) {
         NODES.clear();
+
+        // Force set the config values to the defaults
+        CONTROLABLE_CONF.set(List.of(
+                "vehicle_control_node",
+                "control_seat"
+        ));
+
+        // Save the config file to disk
+        SPEC.save();
+
         CONTROLABLE_CONF.get().forEach(s -> {
             NODES.add("valkyrien_warium:"+s);
         });
