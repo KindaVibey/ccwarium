@@ -12,7 +12,7 @@ functions:
 
 # roll             setNodeRoll(<1, 0, or -1>)
 
-# throttle         setNodeThrottle(<1, 0, or -1>)
+# throttle         setNodeThrottle(<-1 to 10>)
 
 # landing gear     setNodeLandingGear(<true/false>)
 

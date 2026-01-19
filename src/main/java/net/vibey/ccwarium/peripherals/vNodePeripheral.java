@@ -5,6 +5,10 @@ import dan200.computercraft.api.lua.LuaFunction;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.mcreator.valkyrienwarium.procedures.VehicleControlNodeOnTickUpdateProcedure;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class vNodePeripheral implements IPeripheral {
 
@@ -122,4 +126,58 @@ public class vNodePeripheral implements IPeripheral {
 
         return LG;
     }
+
+
+
+
+
+
+    @LuaFunction
+    public Map<String, Double> getRadarLockCoords(int lock) throws LuaException {
+        if (lock < 1) throw new LuaException("lock channel values have to be greater than 0");
+
+        double X = node.getPersistentData().getDouble("TargetX"+lock+".0");
+        double Z = node.getPersistentData().getDouble("TargetZ"+lock+".0");
+        double Y = node.getPersistentData().getDouble("TargetY"+lock+".0");
+
+        Map<String, Double> coords = new HashMap<>();
+        coords.put("x", X);
+        coords.put("y", Y);
+        coords.put("z", Z);
+        return coords;
+    }
+
+    @LuaFunction
+    public double getRadarLockChannel() {
+        return node.getPersistentData().getDouble("SelectedTarget");
+    }
+
+    @LuaFunction
+    public double setRadarLockChannel(double target) throws LuaException {
+        if (target < 1 || target > 10) throw new LuaException("Target must be 1-10");
+        node.getPersistentData().putDouble("SelectedTarget", target);
+        BlockState state = node.getLevel().getBlockState(node.getBlockPos());
+        node.getLevel().sendBlockUpdated(node.getBlockPos(), state, state, 3);
+    }
+
+    @LuaFunction
+    public double getRadarScan() {
+        return node.getPersistentData().getDouble("Targets");
+    }
+
+    @LuaFunction
+    public Map<String, Double> getRadarLockVelocity(int target) throws LuaException {
+        if (target < 1) throw new LuaException("target channel values have to be greater than 0");
+
+        double X = node.getPersistentData().getDouble("TMX" + target + ".0");
+        double Y = node.getPersistentData().getDouble("TMY" + target + ".0");
+        double Z = node.getPersistentData().getDouble("TMZ" + target + ".0");
+
+        Map<String, Double> vel = new HashMap<>();
+        vel.put("x", X);
+        vel.put("y", Y);
+        vel.put("z", Z);
+        return vel;
+    }
+
 }
