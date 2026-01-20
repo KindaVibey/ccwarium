@@ -5,7 +5,11 @@ import dan200.computercraft.api.lua.LuaFunction;
 import dan200.computercraft.api.peripheral.IPeripheral;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import net.mcreator.valkyrienwarium.procedures.VehicleControlNodeOnTickUpdateProcedure;
+import org.valkyrienskies.mod.api.ValkyrienSkies;
+import org.valkyrienskies.core.api.world.ShipWorld;
+import org.valkyrienskies.core.api.ships.LoadedShip;
+import org.valkyrienskies.core.api.ships.QueryableShipData;
+import org.joml.Vector3d;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -153,7 +157,7 @@ public class vNodePeripheral implements IPeripheral {
     }
 
     @LuaFunction
-    public double setRadarLockChannel(double target) throws LuaException {
+    public void setRadarLockChannel(double target) throws LuaException {
         if (target < 1 || target > 10) throw new LuaException("Target must be 1-10");
         node.getPersistentData().putDouble("SelectedTarget", target);
         BlockState state = node.getLevel().getBlockState(node.getBlockPos());
@@ -179,5 +183,34 @@ public class vNodePeripheral implements IPeripheral {
         vel.put("z", Z);
         return vel;
     }
+
+    @LuaFunction
+    public String getRadarLockID() throws LuaException {
+        Map<String, Double> coords = getRadarLockCoords((int) getRadarLockChannel());
+        if (coords.isEmpty()) return "";
+
+        ShipWorld shipWorld = ValkyrienSkies.api().getShipWorld(node.getLevel());
+        if (shipWorld == null) return "";
+
+        QueryableShipData<LoadedShip> loadedShips = shipWorld.getLoadedShips();
+
+        LoadedShip nearest = null;
+        double minDistSq = Double.MAX_VALUE;
+
+        Vector3d targetPos = new Vector3d(coords.get("x"), coords.get("y"), coords.get("z"));
+
+        for (LoadedShip ship : loadedShips) {
+            Vector3d shipPos = new Vector3d(ship.getTransform().getPositionInWorld());
+            double distSq = shipPos.distanceSquared(targetPos);
+            if (distSq < minDistSq) {
+                minDistSq = distSq;
+                nearest = ship;
+            }
+        }
+
+        if (nearest == null) return "";
+        return nearest.getSlug() != null ? nearest.getSlug() : "";
+    }
+
 
 }
